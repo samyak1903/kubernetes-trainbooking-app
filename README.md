@@ -1,5 +1,5 @@
 Kubernetes Two-Tier Train Booking Application
-This project demonstrates the deployment of a multi-tier application on Google Kubernetes Engine (GKE). The architecture consists of a Java Spring Boot REST API that connects to a MySQL database, all managed by Kubernetes.
+This project demonstrates the deployment of a multi-tier application Kubernetes Engine. The architecture consists of a Java Spring Boot REST API that connects to a MySQL database, all managed by Kubernetes.
 
 This project was created to fulfill the requirements of the NAGP 2025 Home Assignment.
 
@@ -18,3 +18,4 @@ Service API Tier: A stateless Spring Boot application that exposes REST endpoint
 Database Tier: A MySQL database for data persistence. It is deployed as a Kubernetes StatefulSet to provide a stable network identity and persistent storage, ensuring data is not lost when the pod is restarted.
 
 Configuration is managed externally using a ConfigMap for non-sensitive data and a Secret for the database password. The application is exposed to the internet via a GKE Ingress which provisions a Google Cloud Load Balancer.
+
