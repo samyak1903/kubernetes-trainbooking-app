@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: samyak1903/trainbooking:latest
+        ports:
+        - containerPort: 8080
+        env:
+        # The JDBC URL to connect to the MySQL service.
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql-db-service:3306/ticket_directory"
+        # Gets the username from the ConfigMap.
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: MYSQL_USER
+        # Gets the password from the Secret.
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: MYSQL_PASSWORD
